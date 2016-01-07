@@ -77,17 +77,12 @@ protected:
         for (const auto & dimM : M)
         {
             // Pairwise distance between matrices is: sumsq_cols(x1) + sumsq_cols(x2)' - 2 x1 x2', using Python style broadcasting
-            std::cout << "Loop 0\n";
             MatrixType sumsq_cols = dimM.sumsq_cols(); 
-            std::cout << "Loop 1\n";
             MatrixType mat = dimM.dot(None, dimM, Trans);
-            std::cout << "Loop 2\n";
             mat *= -2;
             mat.col_wise_tiled_add_inplace(sumsq_cols);
-            std::cout << "Loop 3\n";
             mat.row_wise_tiled_add_inplace(sumsq_cols);
-            std::cout << "Loop 4\n";
-            mmsqdist.push_back(mat);
+            mmsqdist.push_back(MatrixType{mat});
         }
     }
     void sqdist(const std::vector<MatrixType> & M, const std::vector<MatrixType> & X)   
