@@ -19,16 +19,13 @@ TEST(SqDist, MM)
    Dummy<CUDAMatrix<float>> k{3};
    k.setM(m);
    auto distMM = k.sqdistMM();
-   std::cout << "check\n";
    CUDAMatrix<float> sd2{2,2}, sd3{3,3};
-   std::cout << "check\n";
    sd2 = 0, 1,
          1, 0;
    sd3 = 0, 1, 4,
          1, 0, 1,
          4, 1, 0;
    Kronecker<CUDAMatrix<float>> ans{{ sd3, sd2, sd3 }};
-   std::cout << "check\n";
    ASSERT_EQ(ans, distMM);
 }
 TEST(SqDist, MX) 
