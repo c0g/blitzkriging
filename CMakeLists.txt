@@ -25,7 +25,7 @@ set(CUDA_NVCC_FLAGS "${CUDA_NVCC_FLAGS} -G -g -std=c++11")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O3 -pthread") 
 
 # Includes
-include_directories(${CUDA_INCLUDE_DIRS} ${OpenBLAS_INCLUDE_DIR} ${GTEST_INCLUDE_DIR} ${Boost_INCLUDE_DIRS} src inc ~/code/kronlib/inc)
+include_directories(${CUDA_INCLUDE_DIRS} ${OpenBLAS_INCLUDE_DIR} ${GTEST_INCLUDE_DIR} ${Boost_INCLUDE_DIRS} src inc kronlib/inc)
 
 ## Source files for executable
 set(SOURCE_FILES src/play.cu)
