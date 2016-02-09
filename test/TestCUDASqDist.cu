@@ -1,13 +1,26 @@
 //
 // Created by Thomas Nickson on 05/07/2015.
 //
-
+#include <chrono>
 #include "kronlib.h"
 #include "blitzkriging.h"
 #include <iostream>
 #include "gtest/gtest.h"
 using namespace kronlib;
 using namespace blitzkriging;
+TEST(SqDist, MM)
+{
+   CUDAMatrix<float> m0{10000,10};
+   std::vector<CUDAMatrix<float>> m{{ m0 }};
+   
+   Dummy<CUDAMatrix<float>> k{1};
+   k.setM(m);
+    auto t_start = std::chrono::high_resolution_clock::now();
+    k.sqdistMM();
+    auto t_end = std::chrono::high_resolution_clock::now();
+    auto delta_t = std::chrono::duration<double, std::milli>(t_end-t_start).count();
+    std::cout << delta_t << " ms \n";
+}/*
 TEST(SqDist, MM)
 {
    CUDAMatrix<float> m0{3,1}, m1{2,1}, m2{3,1};
@@ -55,7 +68,7 @@ TEST(SqDist, MX)
          0, 1;
    KroneckerVectorStack<CUDAMatrix<float>> ans{{ sd0, sd1, sd2 }};
    ASSERT_EQ(ans, distMX);
-}
+}*/
 int main(int argc, char **argv)
 {
     ::testing::InitGoogleTest(&argc, argv);
