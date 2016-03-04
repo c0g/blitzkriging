@@ -21,7 +21,7 @@ else()
 endif()
 message("CUSOLVER: ${CUSOLVER_LIBRARY}")
 # Compiler flags
-set(CUDA_NVCC_FLAGS "${CUDA_NVCC_FLAGS} -G -g")
+set(CUDA_NVCC_FLAGS "${CUDA_NVCC_FLAGS} -G -g -std=c++11")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O3 -pthread") 
 
 # Includes
